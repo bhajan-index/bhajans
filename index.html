@@ -20,7 +20,7 @@
 <body ng-app="bhajans">
 <div ng-controller="BhajanSearchCtrl">
     <div class="input-group input-group-lg">
-        <input ng-model="query" type="text" placeholder="Filter by" autofocus class="form-control" />
+        <input ng-model="query" ng-model-options="{debounce: 220}" type="text" placeholder="Filter by" autofocus class="form-control" />
     </div><!-- /input-group -->
 
     <table class="table table-striped">
