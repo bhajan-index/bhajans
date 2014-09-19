@@ -24,6 +24,9 @@
     </div><!-- /input-group -->
 
     <table class="table table-striped">
+        <thead>
+            <tr><th>Bhajan Name ## Volume-Page</th></tr>
+        </thead>
         <tr ng-repeat="bhajan in bhajans | filter:query | orderBy: 'toString()'">
             <td ng-bind-html="bhajan | highlight:query"></td>
         </tr>
