@@ -14,7 +14,6 @@ app.filter "highlight", ->
     else
       text
 
-
 app.controller "BhajanSearchCtrl", ["$scope", "$http", "$localStorage", ($scope, $http, storage) ->
   if storage.bhajans?
     $scope.bhajans = storage.bhajans
