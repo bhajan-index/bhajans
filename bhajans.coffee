@@ -14,11 +14,8 @@ app.filter "highlight", ->
     else
       text
 
-app.controller "BhajanSearchCtrl", ["$scope", "$http", "$localStorage", ($scope, $http, storage) ->
-  if storage.bhajans?
-    $scope.bhajans = storage.bhajans
-  else
-    $http.get("bhajan-index.json").success (data) ->
-      $scope.bhajans = data
-      storage.bhajans = data
+app.controller "BhajanSearchCtrl", ["$scope", "$http", ($scope, $http) ->
+  $http.get("bhajan-index.json").success (data) ->
+    $scope.bhajans = data
+    storage.bhajans = data
 ]
