@@ -1,6 +1,6 @@
 var app;
 
-app = angular.module("bhajans", ["ngMaterial",'ngMdIcons', 'ngAnimate']);
+app = angular.module("bhajans", ["ngMaterial"]);
 
 app.config(function($sceProvider, $mdThemingProvider) {
   $sceProvider.enabled(false);

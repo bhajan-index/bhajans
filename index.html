@@ -13,10 +13,14 @@
   <style>
     .ui-match { background: orange; }
     .repeated-item {
-      /*box-sizing: border-box;*/
+      border-bottom: 1px solid #ddd;
+      height: 80px;
+    }
+    .repeated-item:last-child {
+      border-bottom: none;
     }
     .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
-      padding-left: 16px; 
+      padding-left: 16px;
     }
   </style>
     <!--[if lt IE 9]>
@@ -29,19 +33,19 @@
       <md-content layout="column">
         <md-toolbar class="md-hue-2" layout="column">
           <div class="md-toolbar-tools">
-            <h2 flex="none" md-truncate>Bhajan finder</h2>
+            <h2 flex md-truncate>Amma's Bhajans</h2>
             <md-input-container flex="90" style="margin: 0 20px; display:flex; color: white;" md-no-float>
-              <input ng-model="query" ng-model-options="{debounce: 200}" type="search" placeholder="Search" autofocus>
+              <input ng-model="query" ng-model-options="{debounce: 200}" type="search" placeholder="Smart Search" autofocus>
             </md-input-container>
           </div>
         </md-toolbar>
         <md-card>
           <md-card-content>
-            <md-list flex>
-              <md-virtual-repeat-container style="height: calc( 100vh - 100px )" md-auto-shrink layout="column">
-              <div md-virtual-repeat="bhajanObject in bhajans | filter:closeMatch" class="repeated-item"> <md-list-item ng-bind-html="bhajanObject.bhajan | highlight:query" flex></md-list-item></div>
-              </md-virtual-repeat-container>
-            </md-list>
+            <md-virtual-repeat-container style="height: calc( 100vh - 100px )" md-auto-shrink>
+              <div md-virtual-repeat="bhajanObject in bhajans | filter:closeMatch" class="repeated-item" layout="column" layout-align="center">
+                <span ng-bind-html="bhajanObject.bhajan | highlight:query"></span>
+              </div>
+            </md-virtual-repeat-container>
           </md-card-content>
         </md-card>
       </md-content>
@@ -59,11 +63,9 @@
 
     <!-- scripts -->
     <script type='text/javascript' src='angular.js'></script>
-    <script type='text/javascript' src="angular-touch.min.js"></script>
     <script type='text/javascript' src="/angular-material.min.js"></script>
     <script type='text/javascript' src="/angular-aria.min.js"></script>
-    <script type='text/javascript' src="/angular-material-icons.min.js"></script>
-    <!-- <script type='text/javascript' src="angular-touch.min.js"></script> -->
+    <!-- <script type='text/javascript' src="/angular-material-icons.min.js"></script> -->
     <script type='text/javascript' src="angular-animate.min.js"></script>
     <script type='text/javascript' src="ngStorage.min.js"></script>
     <script type='text/javascript' src="bhajans.js"></script>
