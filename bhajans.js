@@ -29,7 +29,12 @@ app.controller("BhajanSearchCtrl", [
     function makeSearchable(line) {
       if(! (line && line.replace)){
       }
-      return line.replace('h','').replace(/a+/g,'a').replace(/[iey]+/g,'iey').replace(/z/g,'r')
+      return line
+        .replace('h','')
+        .replace(/a+/g,'a')
+        .replace(/[iey]+/g,'iey')
+        .replace(/z/g,'r')
+        .replace(/tha/g,'th')
     }
     $http.get("bhajan-index.json").success(function(data) {
       _.bhajans = data.map(function (line) {
@@ -37,7 +42,7 @@ app.controller("BhajanSearchCtrl", [
       })
     });
     _.closeMatch = function(actual) {
-      var searched = makeSearchable(_.query)
+      var searched = makeSearchable(_.query.toLowerCase())
       return !!actual.search.match(searched)
     }
   }
