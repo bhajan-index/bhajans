@@ -24,10 +24,21 @@ app.filter("highlight", function() {
 });
 
 app.controller("BhajanSearchCtrl", [
-  "$scope", "$http", function($scope, $http) {
+  "$scope", "$http", function(_, $http) {
+    _.query = ''
+    function makeSearchable(line) {
+      if(! (line && line.replace)){
+      }
+      return line.replace('h','').replace(/a+/g,'a').replace(/[iey]+/g,'iey').replace(/z/g,'r')
+    }
     $http.get("bhajan-index.json").success(function(data) {
-      $scope.bhajans = data;
-      storage.bhajans = data;
+      _.bhajans = data.map(function (line) {
+        return {bhajan:line, search:makeSearchable(line)}
+      })
     });
+    _.closeMatch = function(actual) {
+      var searched = makeSearchable(_.query)
+      return !!actual.search.match(searched)
+    }
   }
 ]);
