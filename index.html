@@ -8,9 +8,16 @@
   <meta charset="utf-8">
   <title>US Bhajanamritam Index Search</title>
 
-  <link rel="stylesheet" href="bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
+  <link rel="stylesheet" href="./angular-material.min.css">
   <style>
-    .ui-match { background: yellow; }
+    .ui-match { background: orange; }
+    .repeated-item {
+      /*box-sizing: border-box;*/
+    }
+    .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
+      padding-left: 16px; 
+    }
   </style>
     <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -19,24 +26,44 @@
   </head>
   <body ng-app="bhajans" ng-cloak>
     <div ng-controller="BhajanSearchCtrl">
-      <div class="input-group input-group-lg">
-        <input ng-model="query" ng-model-options="{debounce: 200}" type="text" placeholder="Filter by" autofocus class="form-control" />
-      </div><!-- /input-group -->
+      <md-content layout="column">
+        <md-toolbar class="md-hue-2" layout="column">
+          <div class="md-toolbar-tools">
+            <h2 flex="none" md-truncate>Bhajan finder</h2>
+            <md-input-container flex="90" style="margin: 0 20px; display:flex; color: white;" md-no-float>
+              <input ng-model="query" ng-model-options="{debounce: 200}" type="search" placeholder="Search" autofocus>
+            </md-input-container>
+          </div>
+        </md-toolbar>
+        <md-card>
+          <md-card-content>
+            <md-list flex>
+              <md-virtual-repeat-container style="height: calc( 100vh - 100px )" md-auto-shrink layout="column">
+              <div md-virtual-repeat="bhajanObject in bhajans | filter:closeMatch" class="repeated-item"> <md-list-item ng-bind-html="bhajanObject.bhajan | highlight:query" flex></md-list-item></div>
+              </md-virtual-repeat-container>
+            </md-list>
+          </md-card-content>
+        </md-card>
+      </md-content>
 
-      <table class="table table-striped">
+<!--       <table class="table table-striped">
         <thead>
           <tr><th>Bhajan Name ## Volume-Page</th></tr>
         </thead>
         <tr ng-repeat="bhajanObject in bhajans | filter:closeMatch">
           <td ng-bind-html="bhajanObject.bhajan | highlight:query"></td>
-          <!-- <td ng-bind-html="bhajan"></td> -->
+          <!-- <td ng-bind-html="bhajan"></td>
         </tr>
-      </table>
+      </table> -->
     </div>
 
     <!-- scripts -->
-    <script type='text/javascript' src='angular.min.js'></script>
+    <script type='text/javascript' src='angular.js'></script>
     <script type='text/javascript' src="angular-touch.min.js"></script>
+    <script type='text/javascript' src="/angular-material.min.js"></script>
+    <script type='text/javascript' src="/angular-aria.min.js"></script>
+    <script type='text/javascript' src="/angular-material-icons.min.js"></script>
+    <!-- <script type='text/javascript' src="angular-touch.min.js"></script> -->
     <script type='text/javascript' src="angular-animate.min.js"></script>
     <script type='text/javascript' src="ngStorage.min.js"></script>
     <script type='text/javascript' src="bhajans.js"></script>
