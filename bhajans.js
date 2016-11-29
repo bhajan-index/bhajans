@@ -36,7 +36,7 @@ app.controller("BhajanSearchCtrl", [
         .replace(/a+/g,'a')
         .replace(/[iey]+/g,'iey')
         .replace(/[uo]+/g,'uo')
-        .replace(/[td]/g,'td')
+        .replace(/[tdl]/g,'tdl')
         .replace('z','r')
     }
     $http.get("bhajan-index.json").success(function(data) {

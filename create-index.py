@@ -9,8 +9,9 @@ with open("translation.csv", 'r') as f:
 	# 	translation_mapping[original] = searchable
 
 # read bhajan indexes
+supplements = ["2016Supplement.txt","2015Supplement.txt","2014Supplement.txt","2013Supplement.txt","2012Supplement.txt","2011Supplement.txt"]
 import re
-for filename in ["2016Supplement.txt","2015Supplement.txt","2014Supplement.txt","2013Supplement.txt","2012Supplement.txt","2011Supplement.txt"]:
+for filename in supplements:
 	# make substitutions
 	with open(filename, 'r') as f:
 		content = f.read().lower()
@@ -24,7 +25,8 @@ for filename in ["2016Supplement.txt","2015Supplement.txt","2014Supplement.txt",
 
 # merge and sort file
 bhajans = {}
-for filename in ["2016Supplement.txt.changed.txt","2015Supplement.txt.changed.txt","2014Supplement.txt.changed.txt","2013Supplement.txt.changed.txt","2012Supplement.txt.changed.txt","2011Supplement.txt.changed.txt","bhajanmritam.txt"]:
+changed = [ f + ".changed.txt" for f in supplements]
+for filename in (changed + ["bhajanmritam.txt"]):
 	with open(filename, 'r') as f:
 		for line in f.read().lower().split('\n'):
 			try:
